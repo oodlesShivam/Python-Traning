@@ -19,12 +19,10 @@ EMAIL_HOST_PASSWORD = 'sds&13101996'
 
 EMAIL_PORT = 587
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -37,7 +35,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -48,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,6 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'myapp/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'accounts/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,21 +80,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shivamProject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-      'ENGINE': 'django.db.backends.mysql',
-      'NAME': 'test',
-      'USER':  'root',
-      'PASSWORD': 'root',
-      'HOST': 'localhost',
-      'PORT': '3306',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -110,8 +107,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/accounts/'

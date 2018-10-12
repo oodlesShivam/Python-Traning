@@ -1,0 +1,30 @@
+<html>
+<div>
+    {% extends 'base.html' %}
+</div>
+<body>
+{% block body %}
+<h1><strong>Home</strong></h1>
+<h3>
+    Hello World!!!<p>Today is {{today}}</p>
+    We are
+    {% if today.day == 1 %}
+
+    the first day of month.
+    {% elif today.day == 30 %}
+
+    the last day of month.
+    {% else %}
+
+    I don't know.
+    {%endif%}
+
+    {% for day in days_of_week %}
+    <p>
+        {{day}}
+    </p>
+    {% endfor %}
+</h3>
+{% endblock %}
+</body>
+</html>

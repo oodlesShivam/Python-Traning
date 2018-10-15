@@ -1,7 +1,5 @@
+{% extends 'base.html' %}
 <html>
-<div>
-    {% extends 'base.html' %}
-</div>
 <body>
 {% block body %}
 <h1><strong>Home</strong></h1>
@@ -24,6 +22,9 @@
         {{day}}
     </p>
     {% endfor %}
+
+    <a href="/accounts/view_profile"><button type="button" class="btn btn-primary btn-lg">Profile</button></a>
+
 </h3>
 {% endblock %}
 </body>

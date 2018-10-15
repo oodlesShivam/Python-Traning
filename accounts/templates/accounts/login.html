@@ -4,7 +4,10 @@
     {% block head %}
     <title>Login</title>
     {% endblock %}
+
+
 </head>
+<body onload="checkCookie()">
 {% block body %}
 <div class="container">
     <h1>Welcome</h1>
@@ -14,8 +17,58 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        {% if request.COOKIES.login_count != null and request.COOKIES.login_count == 3 %}
+            <p>Your login attempts are finished. CLose the browser and try again</p>
+        {%else%}
+            <button type="submit" id="submit">Login</button>
+
+        {%endif%}
     </form>
+
+        <script>
+$(document).ready(
+function(){
+    alert("in document ready");
+    checkCookie();
+
+});
+function setCookie(cname,cvalue) {
+    document.cookie = cname + "=" + cvalue + ";path=/";
+}
+
+function getCookie(login_count) {
+    var name = login_count + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        var count = parseInt(c.substring(name.length, c.length);
+            return count;
+        }
+    }
+    return null;
+}
+
+function checkCookie() {
+alert("in checkCookie");
+    var count = getCookie(login_count);
+    if (count != "") {
+        if(count == 3){
+                     document.getElementById("submit").disabled = true;
+                   }
+                   count = count+1;
+           setCookie("login_count", count);
+    } else {
+      var login_count = 0;
+           setCookie("login_count", login_count);
+    }
+}
+</script>
 </div>
+</body>
 {% endblock %}
 </html>

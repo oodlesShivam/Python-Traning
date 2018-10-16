@@ -17,18 +17,12 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        {% if request.COOKIES.login_count != null and request.COOKIES.login_count == 3 %}
-            <p>Your login attempts are finished. CLose the browser and try again</p>
-        {%else%}
             <button type="submit" id="submit">Login</button>
-
-        {%endif%}
+    <a href="/accounts/password-reset"><button type="button">Forget Password</button></a>
     </form>
-
-        <script>
+    <script>
 $(document).ready(
 function(){
-    alert("in document ready");
     checkCookie();
 
 });
@@ -46,26 +40,29 @@ function getCookie(login_count) {
             c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
-        var count = parseInt(c.substring(name.length, c.length);
-            return count;
+            return c.substring(name.length, c.length);
         }
     }
-    return null;
+    return "";
 }
-
 function checkCookie() {
-alert("in checkCookie");
-    var count = getCookie(login_count);
-    if (count != "") {
-        if(count == 3){
-                     document.getElementById("submit").disabled = true;
-                   }
-                   count = count+1;
-           setCookie("login_count", count);
+var classofErrorList = document.getElementsByClassName('errorlist');
+var classofErrorListNotFeild = document.getElementsByClassName('errorlist nonfield');
+if(classofErrorList.length > 0 || classofErrorListNotFeild.length > 0){
+    var count =getCookie("login_count");
+    if (count !== "") {
+           var login_count = parseInt(count);
+           if(login_count > 2){
+			document.getElementById("submit").disabled = true;
+			    alert("Login attempts are finish. Close the browser and try again");
+		}
+           login_count = login_count+1;
+           setCookie("login_count", login_count);
     } else {
-      var login_count = 0;
+      var login_count = 1;
            setCookie("login_count", login_count);
     }
+  }
 }
 </script>
 </div>

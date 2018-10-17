@@ -28,7 +28,7 @@ def register(request):
 @login_required
 def view_profile(request):
     args = {'user': request.user}
-    return render(request, 'accounts/view_profile.html')
+    return render(request, 'accounts/view_profile.html', args)
 
 @login_required
 def edit_profile(request):

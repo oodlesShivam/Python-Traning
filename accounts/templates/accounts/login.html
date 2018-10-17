@@ -48,7 +48,7 @@ function getCookie(login_count) {
 function checkCookie() {
 var classofErrorList = document.getElementsByClassName('errorlist');
 var classofErrorListNotFeild = document.getElementsByClassName('errorlist nonfield');
-if(classofErrorList.length > 0 || classofErrorListNotFeild.length > 0){
+if(classofErrorList.length > 0 || classofErrorList.length > 0){
     var count =getCookie("login_count");
     if (count !== "") {
            var login_count = parseInt(count);

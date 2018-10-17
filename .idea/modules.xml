@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Downloads/Django-Tutorials-master/.idea/Django-Tutorials-master.iml" filepath="$USER_HOME$/Downloads/Django-Tutorials-master/.idea/Django-Tutorials-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/shivamProject.iml" filepath="$PROJECT_DIR$/.idea/shivamProject.iml" />
     </modules>
   </component>

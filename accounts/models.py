@@ -5,12 +5,20 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 
+class UserProfileManager(models.Manager):
+    pass
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     description = models.CharField(max_length=100, default='')
     city = models.CharField(max_length=100, default='')
     website = models.URLField(default='')
     phoneNumber = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='profile_image' , blank=True)
+
+
+    def __str__(self):
+        return self.user.username
 
 
 def createProfile(sender, **kwargs):

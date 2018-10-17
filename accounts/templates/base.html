@@ -28,7 +28,7 @@
                 <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/accounts/view_profile"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
+                <li><a href="/accounts/view_profile"><span class="glyphicon glyphicon-user"></span>Hello {{ user }} !!</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Edit Profile<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -36,6 +36,7 @@
                         <li><a href="/accounts/change-password">Change Password</a></li>
                     </ul>
                 </li>
+                <li><img src="{{ user.userprofile.image.url}}" width="50" height="50"></li>
                 <li><a href="/accounts/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>

@@ -10,10 +10,16 @@
 <body>
 {%block body%}
 <div class="container">
-    <strong><h3>Hello {{user}}!!!</h3></strong>
-    <h4>First Name : <p><font color="red">{{user.first_name}}</font></p></h4>
-    <h4>Last Name : <p><font color="red">{{user.last_name}}</font></h4>
-    <h4>Email : <p><font color="red">{{user.email}}</font></h4>
+    <h1>Profile</h1>
+    <img src="{{ user.userprofile.image.url}}" width="240">
+    <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Description: {{ user.userprofile.description }}</p>
+    <p>Phone: {{ user.userprofile.phone }}</p>
+    <p>City: {{ user.userprofile.city }}</p>
+    <p>Website: {{ user.userprofile.website }}</p>
     <a href="/accounts/view_profile/edit_profile"><button type="button">Edit your Profile</button></a>
     <a href="/accounts/change-password"><button type="button">Change your password</button></a>
        {%endblock%}

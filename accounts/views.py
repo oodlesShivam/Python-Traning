@@ -4,10 +4,11 @@ from accounts.forms import (RegistrationForm, EditProfileForm )
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
 
 # Create your views here.
-def hello(request):
+def home(request):
     today = datetime.now().date()
     daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     response =  render(request, "accounts/hello.html", {"today": today, "days_of_week": daysOfWeek})
@@ -19,7 +20,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if (form.is_valid()):
             form.save()
-            return redirect('/accounts')
+            return redirect('home:home')
     else:
         form = RegistrationForm()
         args = {'form': form}
@@ -37,7 +38,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return render(reverse('accounts:view_profile'))
+            return redirect('accounts:view_profile')
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}

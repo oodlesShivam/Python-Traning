@@ -1,4 +1,16 @@
 from django import forms
 
-class HomeForm(forms.Form):
-    post = forms.CharField(required=True)
+from home.models import Post
+
+
+class HomeForm(forms.ModelForm):
+    post = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control',
+               'placeholder':'Write a post..',
+               'required':'',
+               }
+    ))
+
+    class Meta:
+        model = Post
+        fields = ('post',)

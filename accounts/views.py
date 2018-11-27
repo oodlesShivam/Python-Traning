@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
-from accounts.forms import (RegistrationForm, EditProfileForm)
-# from accounts.forms import (RegistrationForm, EditProfileForm, ProfileForm)
+# from accounts.forms import (RegistrationForm, EditProfileForm)
+from accounts.forms import (RegistrationForm, EditProfileForm, ProfileForm)
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -35,18 +35,38 @@ def view_profile(request):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user.userprofile)
-        # profile_form = ProfileForm(request.POST, instance=request.user.userprofile)
+        form = EditProfileForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.userprofile)
 
-        if form.is_valid(): #and profile_form.is_valid():
-            form.save()
-            # profile_form.save()
+        if form.is_valid() and profile_form.is_valid():
+            user_form = form.save()
+            custom_form = profile_form.save(False)
+            custom_form.user = user_form
+            custom_form.save()
+
             return redirect('accounts:view_profile')
     else:
-        form = EditProfileForm(instance=request.user.userprofile)
-        # profile_form = ProfileForm(instance=request.user.userprofile)
-        args = {'form': form}
+        form = EditProfileForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.userprofile)
+        args = {}
+        # args.update(csrf(request))
+        args['form'] = form
+        args['profile_form'] = profile_form
         return render(request, 'accounts/edit_profile.html', args)
+# def edit_profile(request):
+#     if request.method == 'POST':
+#         form = EditProfileForm(request.POST, instance=request.user)
+#         # profile_form = ProfileForm(request.POST, instance=request.user.userprofile)
+#
+#         if form.is_valid(): #and profile_form.is_valid():
+#             form.save()
+#             # profile_form.save()
+#             return redirect('accounts:view_profile')
+#     else:
+#         form = EditProfileForm(instance=request.user)
+#         # profile_form = ProfileForm(instance=request.user.userprofile)
+#         args = {'form': form}
+#         return render(request, 'accounts/edit_profile.html', args)
 
 @login_required
 def change_password(request):

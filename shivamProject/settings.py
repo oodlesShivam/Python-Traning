@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'home',
 )
 
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -124,3 +125,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'shivamProject/media')
 LOGIN_REDIRECT_URL = '/home/'
 
 LOGIN_URL = '/account/login/'
+
+AUTH_PROFILE_MODULE = "accounts.UserProfile"

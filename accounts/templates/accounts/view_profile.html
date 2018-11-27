@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +16,7 @@
     <p>Last name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
     <p>Description: {{ user.userprofile.description }}</p>
-    <p>Phone: {{ user.userprofile.phone }}</p>
+    <p>Phone: {{ user.userprofile.phoneNumber }}</p>
     <p>City: {{ user.userprofile.city }}</p>
     <p>Website: {{ user.userprofile.website }}</p>
     <a href="/accounts/view_profile/edit_profile"><button type="button">Edit your Profile</button></a>

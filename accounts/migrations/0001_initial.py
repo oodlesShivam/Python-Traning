@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('city', models.CharField(max_length=100, default='')),
                 ('website', models.URLField(default='')),
                 ('phoneNumber', models.IntegerField(default=0)),
+                ('image', models.ImageField(blank=True, upload_to='profile_image')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
         ),

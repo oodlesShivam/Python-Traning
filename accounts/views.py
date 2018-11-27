@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
-from accounts.forms import (RegistrationForm, EditProfileForm )
+from accounts.forms import (RegistrationForm, EditProfileForm)
+# from accounts.forms import (RegistrationForm, EditProfileForm, ProfileForm)
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -34,13 +35,16 @@ def view_profile(request):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
+        form = EditProfileForm(request.POST, instance=request.user.userprofile)
+        # profile_form = ProfileForm(request.POST, instance=request.user.userprofile)
 
-        if form.is_valid():
+        if form.is_valid(): #and profile_form.is_valid():
             form.save()
+            # profile_form.save()
             return redirect('accounts:view_profile')
     else:
-        form = EditProfileForm(instance=request.user)
+        form = EditProfileForm(instance=request.user.userprofile)
+        # profile_form = ProfileForm(instance=request.user.userprofile)
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
 

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from home.forms import HomeForm
 from home.models import Post
-
+from datetime import datetime
 
 class HomeViews(TemplateView):
     template_name = 'home/home.html'
@@ -18,6 +18,8 @@ class HomeViews(TemplateView):
         return response
 
     def post(self, request):
+        today = datetime.now()
+        print("current datetime:::::::",today)
         form = HomeForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)

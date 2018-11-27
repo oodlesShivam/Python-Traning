@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0001_initial'),
+        ('home', '0004_auto_20181018_0810'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='userprofile',
-            name='image',
-            field=models.ImageField(blank=True, upload_to='profile_image'),
+        migrations.AlterField(
+            model_name='post',
+            name='created',
+            field=models.DateTimeField(auto_now_add=True),
         ),
     ]
